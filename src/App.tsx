@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  Box,
+  createTheme,
+  ThemeProvider,
+  useMediaQuery,
+} from "@material-ui/core";
+import { useMemo } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { IssueForm } from "./Components/IssueForm";
+const queryClient = new QueryClient();
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          type: prefersDarkMode ? "light" : "light",
+        },
+      }),
+    [prefersDarkMode]
   );
-}
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Box
+          display={"flex"}
+          width={"100%"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <IssueForm />
+        </Box>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
