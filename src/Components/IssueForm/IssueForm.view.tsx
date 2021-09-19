@@ -56,12 +56,14 @@ export const FormView: FC<FormViewProps> = ({
         <Box>
           {data.labels?.length > 0 && (
             <Box>
-              <Typography>{`Estimated labels:`}</Typography>
-              <ul>
+              <Typography variant="h5">{`Estimated labels`}</Typography>
+              <List>
                 {data.labels.map(({ id, name }) => (
-                  <li key={id}>{name}</li>
+                  <ListItem key={id}>
+                    <ListItemText primary={name} />
+                  </ListItem>
                 ))}
-              </ul>
+              </List>
             </Box>
           )}
 

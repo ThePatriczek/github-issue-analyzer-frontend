@@ -5,6 +5,7 @@
     "deps",
     "pages",
     "vscode",
-    "owner"
+    "owner",
+    "repository"
   ]
 }
