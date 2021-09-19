@@ -1,7 +1,7 @@
 import { wrap } from "@atlasgroup/react-wrap";
 import { Autocomplete, Box } from "@mui/material";
 import React, { FC } from "react";
-import { useOwnerAutocomplete } from "../Owner/hooks/useOwnerAutocomplete";
+import { useOwnerAutocomplete } from "./hooks/useOwnerAutocomplete";
 
 export const HomePageView: FC = () => (
   <Box>
