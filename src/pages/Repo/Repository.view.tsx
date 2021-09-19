@@ -1,5 +1,8 @@
-import { FC } from "react";
+import React, { FC } from "react";
+import { IssueForm } from "../../Components/IssueForm";
 
 export const RepositoryPageView: FC = () => (
-  <div>TextField Title TextField Body (github like)</div>
+  <div>
+    <IssueForm />
+  </div>
 );

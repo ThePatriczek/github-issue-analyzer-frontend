@@ -3,18 +3,13 @@ import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 
-type AutocompleteOption = {
+export type User = {
   login: string;
   name: string;
   avatarUrl: string;
 };
 
-type OwnerAutocompleteProps = AutocompleteProps<
-  AutocompleteOption,
-  false,
-  false,
-  false
->;
+type OwnerAutocompleteProps = AutocompleteProps<User, false, false, false>;
 
 export const useOwnerAutocomplete = (
   props?: OwnerAutocompleteProps
@@ -23,7 +18,7 @@ export const useOwnerAutocomplete = (
   const [inputValue, setInputValue] = useState<string>(``);
 
   const { isLoading, data, isFetching } = useQuery<{
-    users: AutocompleteOption[];
+    users: User[];
   }>(
     "users",
     async () =>

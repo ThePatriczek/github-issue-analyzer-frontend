@@ -1,8 +1,7 @@
+import { User } from "../../pages/Home/hooks/useOwnerAutocomplete";
 import { useIssueForm } from "./IssueForm.hook";
 
 export enum IssueFormFields {
-  Repo = "repo",
-  Owner = "owner",
   Title = "title",
   Body = "body",
 }
@@ -14,7 +13,7 @@ export type LabelType = {
 
 export type Estimation = {
   labels: LabelType[];
-  participants: string[];
+  participants: User[];
   closedAt: string;
 };
 
