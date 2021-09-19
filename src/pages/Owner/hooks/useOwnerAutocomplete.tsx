@@ -54,8 +54,9 @@ export const useOwnerAutocomplete = (
     onChange,
     inputValue,
     onInputChange,
+    noOptionsText: ``,
     getOptionLabel: ({ login }) => login,
-    renderInput: (params) => <TextField {...params} label="Choose an owner" />,
+    renderInput: (params) => <TextField {...params} label="Search..." />,
     renderOption: (props, { login, avatarUrl }) => (
       <Box component="li" {...props}>
         <Avatar src={avatarUrl} alt={login} sx={{ width: 24, height: 24 }} />

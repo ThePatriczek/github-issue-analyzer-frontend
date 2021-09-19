@@ -1,4 +1,5 @@
 import {
+  Box,
   Container,
   createTheme,
   ThemeProvider,
@@ -29,8 +30,17 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <Container fixed>
-          <Component {...pageProps} />
+        <Container fixed sx={{ height: "100vh" }}>
+          <Box
+            sx={{
+              display: "grid",
+              justifyContent: "center",
+              alignContent: "center",
+              height: "100vh",
+            }}
+          >
+            <Component {...pageProps} />
+          </Box>
         </Container>
       </ThemeProvider>
     </QueryClientProvider>
