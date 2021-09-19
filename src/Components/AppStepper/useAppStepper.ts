@@ -1,4 +1,4 @@
-import { StepButtonProps, StepperProps } from "@mui/material";
+import { StepperProps } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
 
 export const useAppStepper = (props?: StepperProps) => {
@@ -7,7 +7,7 @@ export const useAppStepper = (props?: StepperProps) => {
   const owner = query.owner;
   const repo = query.repo;
 
-  const onStepButtonClick = (index: number) => (_) => {
+  const onStepButtonClick = (index: number) => () => {
     if (index === 0)
       return push({
         pathname: "/",
