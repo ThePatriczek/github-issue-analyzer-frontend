@@ -4,8 +4,7 @@ import React, { FC } from "react";
 import { useOwnerAutocomplete } from "./hooks/useOwnerAutocomplete";
 
 export const HomePageView: FC = () => (
-  <Box>
-    <h1>{`Choose an owner`}</h1>
+  <Box sx={{ width: `100%` }}>
     <OwnerAutocomplete />
   </Box>
 );
