@@ -26,7 +26,7 @@ export const useOwnerAutocomplete = (
       (await fetch(`http://localhost:8080/user?query=${inputValue}`)).json()
   );
 
-  const options = data?.users || [];
+  const options = data || [];
 
   const onChange: OwnerAutocompleteProps["onChange"] = (_, option) => {
     if (option) {

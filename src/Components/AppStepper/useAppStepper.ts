@@ -29,8 +29,8 @@ export const useAppStepper = (props?: StepperProps) => {
   };
 
   const steps = [
-    owner ? `Owner: ${owner}` : "Choose an owner",
-    repo ? `Repository: ${repo}` : "Select the repository",
+    owner || "Choose an owner",
+    repo || "Select the repository",
     "Write an issue",
   ];
 
