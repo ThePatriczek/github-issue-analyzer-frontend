@@ -1,5 +1,5 @@
 import { wrap } from "@atlasgroup/react-wrap";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete } from "@mui/material";
 import React, { FC } from "react";
 import { useOwnerAutocomplete } from "../Owner/hooks/useOwnerAutocomplete";
 
@@ -9,4 +9,4 @@ export const HomePageView: FC = () => (
   </div>
 );
 
-const OwnerAutocomplete = wrap(Autocomplete, useOwnerAutocomplete);
+const OwnerAutocomplete = wrap(Autocomplete as any, useOwnerAutocomplete);

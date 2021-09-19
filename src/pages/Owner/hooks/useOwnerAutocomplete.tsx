@@ -1,6 +1,7 @@
 import { AutocompleteProps, Avatar, Box, TextField } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 
 type AutocompleteOption = {
   login: string;
@@ -15,18 +16,23 @@ type OwnerAutocompleteProps = AutocompleteProps<
   false
 >;
 
-const MOCKED_OPTIONS = [
-  {
-    login: "ThePatriczek",
-    name: `Patrik Szewczyk`,
-    avatarUrl: "https://avatars.githubusercontent.com/u/29193319?v=4",
-  },
-];
-
 export const useOwnerAutocomplete = (
   props?: OwnerAutocompleteProps
 ): OwnerAutocompleteProps => {
   const { push } = useRouter();
+  const [inputValue, setInputValue] = useState<string>(``);
+
+  const { isLoading, data, isFetching } = useQuery<{
+    users: AutocompleteOption[];
+  }>(
+    "users",
+    async () =>
+      inputValue &&
+      (await fetch(`http://localhost:8080/user?query=${inputValue}`)).json()
+  );
+
+  const options = data?.users || [];
+
   const onChange: OwnerAutocompleteProps["onChange"] = (_, option) => {
     if (option) {
       push({
@@ -36,11 +42,18 @@ export const useOwnerAutocomplete = (
     }
   };
 
+  const onInputChange: OwnerAutocompleteProps["onInputChange"] = (
+    _,
+    newInputValue
+  ) => setInputValue(newInputValue);
+
   return {
     id: `owner`,
-    loading: true,
-    options: MOCKED_OPTIONS,
+    loading: isLoading || isFetching,
+    options,
     onChange,
+    inputValue,
+    onInputChange,
     getOptionLabel: ({ login }) => login,
     renderInput: (params) => <TextField {...params} label="Choose an owner" />,
     renderOption: (props, { login, avatarUrl }) => (
