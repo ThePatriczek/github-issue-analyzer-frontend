@@ -1,6 +1,6 @@
 import { AutocompleteProps, Avatar, Box, TextField } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
-import React, { useState } from "react";
+import React, { useState, KeyboardEvent } from "react";
 import { useQuery } from "react-query";
 
 export type User = {
@@ -17,24 +17,31 @@ export const useOwnerAutocomplete = (
   const { push } = useRouter();
   const [inputValue, setInputValue] = useState<string>(``);
 
-  const { isLoading, data, isFetching } = useQuery<{
-    users: User[];
-  }>(
+  const { isLoading, data, isFetching } = useQuery<User[]>(
     "users",
     async () =>
-      inputValue &&
-      (await fetch(`http://localhost:8080/user?query=${inputValue}`)).json()
+      (await fetch(`http://localhost:8080/user?query=${inputValue}`)).json(),
+    { enabled: inputValue.length > 2 }
   );
 
   const options = data || [];
 
   const onChange: OwnerAutocompleteProps["onChange"] = (_, option) => {
-    if (option) {
-      push({
+    if (option)
+      return push({
         pathname: `/[owner]`,
         query: { owner: option.login },
       }).catch(console.error);
-    }
+  };
+
+  const onKeyPress: OwnerAutocompleteProps["onKeyPress"] = (
+    e: KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "Enter" && e.currentTarget.value)
+      return push({
+        pathname: `/[owner]`,
+        query: { owner: e.currentTarget.value },
+      }).catch(console.error);
   };
 
   const onInputChange: OwnerAutocompleteProps["onInputChange"] = (
@@ -49,6 +56,7 @@ export const useOwnerAutocomplete = (
     onChange,
     inputValue,
     onInputChange,
+    onKeyPress,
     noOptionsText: ``,
     fullWidth: true,
     getOptionLabel: ({ login }) => login,

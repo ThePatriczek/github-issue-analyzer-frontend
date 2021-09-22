@@ -15,7 +15,7 @@ export const OwnerPageView: FC<ReturnType<typeof useOwnerPage>> = ({
   onCardClick,
 }) => (
   <Grid container spacing={1}>
-    {repositories.map(({ name, description, language, stars }) => (
+    {repositories?.map(({ name, description, language, stars }) => (
       <Grid item xs={4}>
         <Card>
           <CardActionArea onClick={onCardClick(name)}>

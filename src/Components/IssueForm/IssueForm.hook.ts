@@ -10,7 +10,7 @@ export const useIssueForm = (arg: {}) => {
   const owner = query.owner;
   const repo = query.repo;
 
-  const form = useForm({
+  const form = useForm<any>({
     resolver: yupResolver(issueFormSchema),
     reValidateMode: "onSubmit",
     mode: "all",

@@ -20,7 +20,7 @@ export const useOwnerPage = () => {
     { enabled: isReady && !!owner }
   );
 
-  const repositories = data || [];
+  const repositories = data;
 
   const onCardClick = (repo: string) => () =>
     push({ pathname: `/[owner]/[repo]`, query: { ...query, repo } });
