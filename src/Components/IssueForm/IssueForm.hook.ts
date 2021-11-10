@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import {yupResolver} from '@hookform/resolvers/yup/dist/yup';
 import { Estimation, IssueFormFields } from "./IssueForm.types";
 import { issueFormSchema, IssueFormSchemaFields } from "./IssueForm.schema";
 import { useQuery } from "react-query";
