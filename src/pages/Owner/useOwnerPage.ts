@@ -1,7 +1,8 @@
 import { useRouter } from "next/dist/client/router";
 import { useQuery } from "react-query";
 
-type Repository = {
+export type Repository = {
+  owner: string;
   name: string;
   description: string;
   language: string;
@@ -11,7 +12,7 @@ type Repository = {
 export const useOwnerPage = () => {
   const { query, isReady, push } = useRouter();
   const owner = query.owner;
-  const { isLoading, data, isFetching } = useQuery<Repository[]>(
+  const { data } = useQuery<Repository[]>(
     "repositories",
     async () =>
       (

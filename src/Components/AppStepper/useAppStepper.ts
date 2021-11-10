@@ -41,4 +41,5 @@ const activeSteps: Record<string, number> = {
   "/": 0,
   "/[owner]": 1,
   "/[owner]/[repo]": 2,
+  "/[owner]/[repo]/similar": 1,
 };

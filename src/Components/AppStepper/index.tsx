@@ -3,7 +3,6 @@ import {
   Step,
   StepLabel,
   Stepper,
-  StepperProps,
   StepButton,
 } from "@mui/material";
 import React, { FC } from "react";
@@ -23,7 +22,7 @@ const AppStepperView: FC<ReturnType<typeof useAppStepper>> = ({
     {...props}
   >
     {steps.map((label, index) => (
-      <Step key={label}>
+      <Step key={label as string}>
         <StepButton onClick={onStepButtonClick(index)}>
           <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
         </StepButton>
